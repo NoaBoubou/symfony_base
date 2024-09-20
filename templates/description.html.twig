@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Burgers !</title>{% endblock %}
+
+{% block titre %}{{ parent() }}<h1 class="text-3xl font-bold underline m-0">La recette du burger </h1>{% endblock %}
+ 
+{% block content %}
+    <div>
+    <h1>{{ burger["name"] }}</h1>
+    <p>Un steak haché, une tranche de cheddar fondu, une rondelle de cornichon, des oignons, du ketchup et de la moutarde douce dans un pain classique</p>
+    <img class="card-img-top" src= "https://static01.nyt.com/images/2023/07/13/multimedia/13xp-cheese-king/13xp-cheese-king-videoSixteenByNineJumbo1600.jpg" alt="burgerdumoment">
+    </div>
+{% endblock %}

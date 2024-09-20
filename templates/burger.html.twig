@@ -1,0 +1,14 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Burgers !</title>{% endblock %}
+
+{% block titre %}{{ parent() }}<h1 class="text-3xl font-bold underline m-0">Liste des Burgers - CRUDcroustillant</h1>{% endblock %}
+ 
+{% block content %}
+    <div>
+        {% for burger in burgers %}
+            <li class="rien">{{ burger["name"] }}  </li>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Home</title>{% endblock %}
+
+{% block titre %}{{ parent() }}<h1 class="text-3xl font-bold underline m-0">Accueil - CRUDcroustillant</h1>{% endblock %}
+
+{% block content %}
+
+<img class="card-img-top" src="https://lh3.googleusercontent.com/proxy/Ux9qp3HsjpNaReoo7DCad9L3FQb5VVaO-aMgoY4D2hKfafrNJuNguWRu-ufnsb5H7WjkaGEe365J0o66lhUWYGu1wLW5ysXflg"alt="burgerdumoment">
+<img class="card-img-top" src= {{asset("../assets/images/burgerdumoment.png")}} alt="burgerdumoment">
+
+
+{% endblock %}
+
+
