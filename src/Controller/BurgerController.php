@@ -4,33 +4,35 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\BurgerRepository;
 
 
 class BurgerController extends AbstractController
 {
 
-    const burgers = [
-        ["id" => 1, "name" => "CroudCheese", "description" => "Un steak haché, une tranche de cheddar fondu, une rondelle de cornichon, des oignons, du ketchup et de la moutarde douce dans un pain classique ", "image" => "https://static01.nyt.com/images/2023/07/13/multimedia/13xp-cheese-king/13xp-cheese-king-videoSixteenByNineJumbo1600.jpg"],
-        ["id" => 2, "name" => "CroudTasty"],
-        ["id" => 3, "name" => "CroudBanane"],
-        ["id" => 4, "name" => "CroudGang"]
-    ];
-
     #[Route('/burgers', name: 'burgers')]
-
-    public function liste(): Response
+    public function index(BurgerRepository $burgerRepository): Response
     {
+        $burgers = $burgerRepository->findAll();
         return $this->render('burger.html.twig', [
-            "burgers" => self::burgers
+            "burgers" => $burgers
         ]);
     }
 
     #[Route('/burgers/{id}', name: 'burger', methods: ['GET', 'POST'])]
-
-    public function show($id): Response
+    public function show($id, BurgerRepository $burgerRepository): Response
     {
-        return $this->render('description.html.twig', ["burger" => self::burgers[$id-1]]);
+        $burger = $burgerRepository->find($id);
+    
+        if (!$burger) {
+            throw $this->createNotFoundException('Le burger avec l\'ID ' . $id . ' n\'existe pas.');
+        }
+    
+        // Rendu de la vue avec le burger trouvé
+        return $this->render('description.html.twig', ["burger" => $burger]);
     }
+    
+
 
 }
 

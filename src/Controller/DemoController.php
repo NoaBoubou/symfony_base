@@ -14,6 +14,11 @@ class DemoController extends AbstractController
         return $this->render('demo/demo.html.twig', [
         ]);
     }
+
+    public function findAllBurgers()
+    {
+        return $this->findAll();
+    }
 }
 
 ?>
