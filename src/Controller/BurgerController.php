@@ -19,21 +19,28 @@ class BurgerController extends AbstractController
         ]);
     }
 
-    #[Route('/burgers/{id}', name: 'burger', methods: ['GET', 'POST'])]
+
+    #[Route('/burgers/{id}', name: 'detail', methods: ['GET', 'POST'])]
     public function show($id, BurgerRepository $burgerRepository): Response
     {
         $burger = $burgerRepository->find($id);
-    
-        if (!$burger) {
-            throw $this->createNotFoundException('Le burger avec l\'ID ' . $id . ' n\'existe pas.');
-        }
-    
-        // Rendu de la vue avec le burger trouvé
-        return $this->render('description.html.twig', ["burger" => $burger]);
+        return $this->render('description.html.twig',['burger' => $burger]);
+    }
+
+    #[Route('/burgers/{ingredient}', name: 'detail', methods: ['GET', 'POST'])]
+    public function burgerByIngredient($ingredient, BurgerRepository $burgerRepository): Response
+    {
+        $burgers = $burgerRepository->findBurgersWithIngredient($ingredient);
+        return $this->render('burger.html.twig',['burgers' => $burgers]);
+    }
+
+    #[Route('/burgers/top/{limit}', name: 'detail', methods: ['GET', 'POST'])]
+    public function topXBurgersByPrice($limit, BurgerRepository $burgerRepository): Response
+    {
+        $burgers = $burgerRepository->findTopXBurgers($limit);
+        return $this->render('burger.html.twig',['burgers' => $burgers]);
     }
     
-
-
 }
 
 

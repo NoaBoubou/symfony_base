@@ -40,4 +40,22 @@ class BurgerRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findBurgersWithIngredient(string $ingredient)
+    {
+        $qb = $this->createQueryBuilder('b')
+                  ->join('b.oignon', 'o')
+                  ->where('o.name = :ingredient')
+                  ->setParameter('ingredient', $ingredient);
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findTopXBurgers(int $limit) : array
+    {
+        $qb = $this->createQueryBuilder('b')
+                  ->orderBy('b.price', 'ASC')
+                  ->setMaxResults($limit);
+        return $qb->getQuery()->getResult();
+    }
+
 }

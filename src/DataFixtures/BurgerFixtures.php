@@ -71,13 +71,16 @@ class BurgerFixtures extends Fixture implements DependentFixtureInterface
     {
         $nomsBurgers = [
             'classique',
-            'chily',
-            'smash'
+            'tomateburger',
+            'smash',
+            "John",
+            "Ferchach"
         ];
  
         foreach ($nomsBurgers as $key => $nomBurger) {
             $pain = $this->getReference(PainFixtures::PAIN_REFERENCE.'_'. $key);
             $image = $this->getReference(ImageFixtures::IMAGE_REFERENCE.'_'. $key);
+            $oignon = $this->getReference(OignonFixtures::OIGNON_REFERENCE.'_'. $key);
 
             $burger = new Burger();
             $burger->setName($nomBurger);
@@ -85,6 +88,8 @@ class BurgerFixtures extends Fixture implements DependentFixtureInterface
 
             $burger->setPain($pain);
             $burger->setImage($image);
+            $burger->addOignon($oignon);
+
 
             $manager->persist($burger);
     
@@ -99,6 +104,7 @@ class BurgerFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             PainFixtures::class,
+            OignonFixtures::class
         ];
     }
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:3289666366.

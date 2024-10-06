@@ -13,11 +13,11 @@ class OignonFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $nomsOignons = [
-            'Oignon Rouge',
-            'Oignon Blanc',
-            'Oignon Jaune',
-            'Oignon Caramélisé',
-            'Oignon Frit'
+            'Rouge',
+            'Blanc',
+            'Jaune',
+            'Caramélisé',
+            'Frit'
         ];
 
         foreach ($nomsOignons as $key => $nomOignon) {

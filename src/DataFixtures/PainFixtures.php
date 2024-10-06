@@ -16,7 +16,8 @@ class PainFixtures extends Fixture
             'Baguette',
             'Complet',
             'Seigle',
-            'Mais'
+            'Mais',
+            "Pain de mie"
         ];
  
         foreach ($nomsPains as $key => $nomPain) {
